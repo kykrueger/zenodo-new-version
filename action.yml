@@ -1,5 +1,8 @@
 name: 'Zenodo New Version'
 description: 'Creates a new version of the provided Zenodo Deposition'
+branding:
+  icon: 'upload-cloud'
+  color: 'green'
 inputs:
   zenodo_deposition_id:
     description: 'The ID of the Zenodo Deposition to create a new version of.'
