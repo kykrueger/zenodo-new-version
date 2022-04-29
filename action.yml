@@ -10,7 +10,7 @@ inputs:
   whitelist_replace_doi:
     description: 'The file with a filename per line in which the doi should be replaced'
     required: false
-    default: '.whitelist_upload'
+    default: '.zenodo_whitelist_replace_doi'
   zenodo_server:
     description: 'The URL of the Zenodo Server to use, set "https://zenodo.org" for production'
     required: false
@@ -53,11 +53,11 @@ runs:
         ZENODO_TOKEN: ${{ inputs.zenodo_token }}
         ZENODO_URL: ${{ inputs.zenodo_server }}
       run: |
-        if test ! -f .whitelist_replace_doi; then exit; fi
+        if test ! -f ${{ inputs.whitelist_replace_doi }}; then exit; fi
         # Replace DOI in whiteliste files
         LATEST_DOI=$(zenodo-rest depositions doi latest .tmp_zenodo_deposition.json)
         LATEST_DRAFT_DOI=$(zenodo-rest depositions doi latest-draft .tmp_zenodo_deposition.json)
-        xargs -a .whitelist_replace_doi -I {}\
+        xargs -a ${{ inputs.whitelist_replace_doi }} -I {}\
           awk -i inplace -v t="$LATEST_DOI" -v r="$LATEST_DRAFT_DOI" "{gsub(t,r);}1" {}
     - name: Cleanup 
       shell: bash
