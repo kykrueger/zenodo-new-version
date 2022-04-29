@@ -56,7 +56,9 @@ runs:
         if test ! -f ${{ inputs.whitelist_replace_doi }}; then exit; fi
         # Replace DOI in whiteliste files
         LATEST_DOI=$(zenodo-rest depositions doi latest .tmp_zenodo_deposition.json)
+        echo "LATEST_DOI: $LATEST_DOI"
         LATEST_DRAFT_DOI=$(zenodo-rest depositions doi latest-draft .tmp_zenodo_deposition.json)
+        echo "LATEST_DRAFT_DOI: $LATEST_DRAFT_DOI"
         xargs -a ${{ inputs.whitelist_replace_doi }} -I {}\
           awk -i inplace -v t="$LATEST_DOI" -v r="$LATEST_DRAFT_DOI" "{gsub(t,r);}1" {}
     - name: Cleanup 
