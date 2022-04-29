@@ -37,8 +37,6 @@ runs:
         ZENODO_TOKEN: ${{ inputs.zenodo_token }}
         ZENODO_URL: ${{ inputs.zenodo_server }}
       run: |
-        mkdir tmp
-        echo $TMP_DEPOSITION_JSON
         zenodo-rest depositions retrieve ${{ inputs.zenodo_deposition_id }} --dest .tmp_zenodo_deposition.json
     - name: Create new version 
       shell: bash
