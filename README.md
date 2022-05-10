@@ -33,6 +33,7 @@ jobs:
           zenodo_deposition_id: ${{ env.zenodo_deposition_id }}
           zenodo_server: ${{ env.zenodo_server }}
           zenodo_token: ${{ secrets.ZENODO_SANDBOX_TOKEN }}
+      # Add further actions between the DOI reservation and the publishing process
       - uses: kykrueger/zenodo-publish@v1
         with:
           zenodo_deposition_id: ${{ env.zenodo_deposition_id }}
