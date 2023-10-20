@@ -1,3 +1,6 @@
+# Deprecated
+This action was broken by the major Zenodo release of Oct 2023.
+
 # zenodo-new-version
 Connect a zenodo deposition to your github repo with the 'zenodo-new-version' GitHub action.
 Use this action only after you have already created a deposition.
